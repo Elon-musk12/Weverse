@@ -1,22 +1,16 @@
-# Weverse Comment Manager — corrected starter
+# Weverse Comment Manager — Callback Ready
 
-This package fixes the problems in the previous version:
-- No fake BTS post.
-- No fake people/comments.
-- No fake likes/replies.
-- No pre-selected targets.
-- No pre-filled comments.
-- Five comment fields are blank and are entered by you.
-- Official Weverse sign-in link is provided.
-- The app never asks for your Weverse password.
+This rebuild fixes the misleading login UX.
 
-## Important
-The current public Weverse information I could verify confirms the Weverse account/login system and comment-reply feature, but I could not verify a public OAuth/API contract that gives an independent website live access to a user's feed and posting actions.
+Flow:
+1. Our app starts an authorization request.
+2. An authorized Weverse provider would handle login/consent.
+3. Provider redirects to `/auth/callback`.
+4. Server validates the callback and creates a local session.
+5. Dashboard can then display permitted account data.
 
-So this package is **connection-ready, not falsely connected**. A real live integration requires an officially supported Weverse authorization/API mechanism.
+IMPORTANT: the current static starter cannot invent an OAuth endpoint or claim that the normal Weverse login has connected this app. The official login button opens Weverse only. The callback route is reserved for a documented/authorized provider integration.
 
-## GitHub Pages
-Upload the files to your `main` branch. Then GitHub → Settings → Pages → Deploy from branch → `main` → `/root`.
+Do not collect a Weverse password, browser cookie, or session token in this app.
 
-## Your five comments
-Open Create Comment and enter all five options yourself. They are saved in your browser's local storage.
+The current official Weverse help documents normal account login and account security/device management, but I could not verify a public third-party OAuth/API contract for this exact use case.
